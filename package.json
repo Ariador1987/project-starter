@@ -15,11 +15,11 @@
 		"update": "ncu -ui --format group --install always"
 	},
 	"devDependencies": {
-		"@fontsource-variable/shantell-sans": "^5.0.20",
+		"@fontsource-variable/shantell-sans": "^5.0.21",
 		"@playwright/test": "^1.43.1",
 		"@sveltejs/adapter-vercel": "^5.3.0",
 		"@sveltejs/enhanced-img": "^0.2.0",
-		"@sveltejs/kit": "^2.5.6",
+		"@sveltejs/kit": "^2.5.7",
 		"@sveltejs/vite-plugin-svelte": "^3.1.0",
 		"@types/eslint": "^8.56.10",
 		"@types/node": "^20.12.7",
