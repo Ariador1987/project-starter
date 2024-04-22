@@ -14,11 +14,29 @@
 	);
 
 	let { children }: Props = $props();
+	let listEl: HTMLUListElement;
+
+	let timeoutId: NodeJS.Timeout;
+	function handleResize() {
+		clearTimeout(timeoutId);
+
+		listEl.style.display = 'none';
+		listEl.classList.remove('mobile');
+
+		timeoutId = setTimeout(() => {
+			listEl.style.display = 'flex';
+
+			if (screen === 'mobile') {
+				listEl.classList.add('mobile');
+			}
+		}, 50);
+	}
 </script>
 
-<svelte:window bind:innerWidth />
+<svelte:window bind:innerWidth onresize={handleResize} />
 
 <ul
+	bind:this={listEl}
 	class:mobile={screen === 'mobile'}
 	class:non-mobile={screen === 'non-mobile'}
 	class:open={screen === 'mobile' && navStore.menuIsOpen}
@@ -31,7 +49,7 @@
 
 <style lang="postcss">
 	.mobile {
-		@apply fixed bottom-0 right-0 top-0 z-40 flex h-screen w-2/3 flex-col items-start justify-start gap-5 bg-primary px-16 pt-32 text-2xl transition duration-200;
+		@apply fixed bottom-0 right-0 top-0 z-40 flex h-screen w-3/4 flex-col items-start justify-start gap-5 bg-primary px-16 pt-32 text-2xl transition duration-200;
 	}
 
 	.non-mobile {

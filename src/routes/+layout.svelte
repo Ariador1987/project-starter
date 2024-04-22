@@ -1,12 +1,13 @@
 <script lang="ts">
 	import '@fontsource-variable/shantell-sans';
 	import '../app.css';
-	import { Head, Navbar, Main, Footer } from './';
 	import type { Snippet } from 'svelte';
+	import { Head, Navbar, Main, Footer } from './';
 	import { Backdrop } from '$components';
 	import { navStore } from '$lib/stores';
-	import { page } from '$app/stores';
 	import { navLinks } from '$lib/data';
+	import type { PageData } from './$types';
+	import { page } from '$app/stores';
 
 	type Props = {
 		children: Snippet;
@@ -20,14 +21,14 @@
 		document.documentElement.dataset.testid = 'hydrated';
 	});
 
-	$effect(() => console.log($page));
+	$inspect($page.data, ' logging data');
 </script>
 
 {#snippet navLink(name, path)}
 	<li>
 		<a
 			href={path}
-			class="px-2 py-1"
+			class="px-2 py-1 font-semibold"
 			onclick={() => (navStore.menuIsOpen = false)}>{name}</a
 		>
 	</li>
