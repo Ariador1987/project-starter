@@ -24,9 +24,6 @@
 
 	body {
 		-webkit-font-smoothing: antialiased;
-		isolation: isolate;
-
-		@apply relative;
 	}
 
 	input,
@@ -63,8 +60,6 @@
 		--font-fancy: 'Shantell Sans Variable';
 		--padding-inline: clamp(1rem, 5vw, 3rem);
 		--radius: 1rem;
-
-		@apply transition;
 	}
 
 	/* light theme setup */
@@ -77,8 +72,13 @@
 		color-scheme: dark;
 	}
 
+	html {
+		backface-visibility: hidden;
+	}
+
 	body {
 		view-transition-name: body;
+		isolation: isolate;
 		overflow-x: hidden;
 
 		@apply flex flex-col;
@@ -118,18 +118,18 @@
 		}
 	}
 
-	/* @media (prefers-reduced-motion: no-preference) {
+	@media (prefers-reduced-motion: no-preference) {
 		:root::view-transition-old(body) {
 			pointer-events: none;
-			animation: 300ms ease-out both fade-out-to-left;
+			opacity: 0;
 		}
 
 		:root::view-transition-new(body) {
 			pointer-events: none;
-			animation: 300ms ease-out both slide-from-right;
+			@apply animate-slide-in;
+			/* animation: 300ms ease-out both slide-from-right; */
 		}
 
-		
 		:root[data-back]::view-transition-old(body) {
 			pointer-events: none;
 			animation: 300ms ease-out both fade-out-to-right;
@@ -139,5 +139,5 @@
 			pointer-events: none;
 			animation: 300ms ease-out both slide-from-left;
 		}
-	} */
+	}
 }

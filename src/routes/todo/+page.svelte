@@ -46,11 +46,11 @@
 	// $effect(() => console.log(todos, ' todo'));
 	$inspect(todos);
 
+	type Filter = 'all' | 'active' | 'done';
 	const filters: ReadonlyArray<Filter> = ['all', 'active', 'done'];
 	// How do we filter them ?
 	// Derived State...
 
-	type Filter = 'all' | 'active' | 'done';
 	let currentFilter: Filter = $state('all');
 	let todosToDisplay = $derived(filterTodos(currentFilter));
 
@@ -74,17 +74,13 @@
 			return acc;
 		}, 0);
 	}
-
-	$effect(() => {
-		todos.length % 2 === 0 && console.log('rawr');
-	});
 </script>
 
-<nav class="mb-12 max-w-fit px-4 py-2">
+<!-- <nav class="mb-12 max-w-fit px-4 py-2">
 	<a href="/todo/" class="px-2 py-1">Example 1</a>
 	<a href="/2" class="px-2 py-1">Example 2</a>
 	<a href="/3" class="px-2 py-1">Example 3</a>
-</nav>
+</nav> -->
 
 <div class="mx-auto mb-12 flex items-center justify-center">
 	{#each filters as filter}

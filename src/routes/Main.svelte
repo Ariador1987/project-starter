@@ -11,7 +11,7 @@
 	let { children }: Props = $props();
 </script>
 
-<main class="min-h-[2000px] grow bg-gray-200 pt-16 dark:bg-black">
+<main class="mt-16 grow bg-gray-200 dark:bg-black">
 	{#if $page?.route?.id === navLinks.find((navLink) => navLink.name === 'Home')?.path}
 		<Hero />
 	{/if}

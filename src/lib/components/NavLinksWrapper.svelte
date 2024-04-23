@@ -48,8 +48,18 @@
 </ul>
 
 <style lang="postcss">
+	/* html::view-transition {
+		& nav ul {
+			@apply hidden;
+		}
+	} */
+
+	ul {
+		view-transition-name: nav-wrapper;
+	}
+
 	.mobile {
-		@apply fixed bottom-0 right-0 top-0 z-40 flex h-screen w-3/4 flex-col items-start justify-start gap-5 bg-primary px-16 pt-32 text-2xl transition duration-200;
+		@apply fixed bottom-0 right-0 top-0 z-40 flex h-screen w-3/4 flex-col items-start justify-start gap-5 bg-primary/50 px-16 pt-32 text-2xl transition duration-200;
 	}
 
 	.non-mobile {

@@ -39,6 +39,28 @@ const config: Config = {
 			padding: {
 				inline: 'var(--padding-inline)',
 			},
+			keyframes: {
+				'slide-from-left': {
+					'0%': {
+						transform: 'translateX(-100%)',
+					},
+					'100%': {
+						transform: 'translateX(0)',
+					},
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+					},
+					'100%': {
+						opacity: '1',
+					},
+				},
+			},
+			animation: {
+				'slide-in': 'slide-from-left 0.4s ease',
+				'fade-in': 'fade-in 0.4s ease',
+			},
 		},
 	},
 	daisyui: {

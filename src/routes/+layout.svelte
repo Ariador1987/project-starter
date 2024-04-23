@@ -6,8 +6,7 @@
 	import { Backdrop } from '$components';
 	import { navStore } from '$lib/stores';
 	import { navLinks } from '$lib/data';
-	import type { PageData } from './$types';
-	import { page } from '$app/stores';
+	import { goto, onNavigate } from '$app/navigation';
 
 	type Props = {
 		children: Snippet;
@@ -21,15 +20,30 @@
 		document.documentElement.dataset.testid = 'hydrated';
 	});
 
-	$inspect($page.data, ' logging data');
+	// $inspect($page.data, ' logging data');
+	onNavigate((navigation) => {
+		return new Promise((resolve) => {
+			if (!document.startViewTransition) {
+				resolve();
+				return;
+			}
+
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 </script>
 
 {#snippet navLink(name, path)}
 	<li>
 		<a
 			href={path}
-			class="px-2 py-1 font-semibold"
-			onclick={() => (navStore.menuIsOpen = false)}>{name}</a
+			class="px-2 font-semibold"
+			onclick={(e: Event) => {
+				navStore.menuIsOpen = false
+			}}>{name}</a
 		>
 	</li>
 {/snippet}
